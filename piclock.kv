@@ -1,0 +1,37 @@
+#: import FadeTransition kivy.uix.screenmanager.FadeTransition
+#: import SlideTransition kivy.uix.screenmanager.SlideTransition
+#: import Clock kivy.clock.Clock
+
+ScreenManagement:
+    transition:  SlideTransition(direction="right")
+    MainScreen:
+    ClockScreen:
+    StatusScreen:
+
+<MainScreen>:
+    name: 'main'
+
+    Button:
+        on_release: app.root.current = 'clock'
+        text: 'PiClock'
+        font_size: 50
+
+<ClockScreen>:
+    name: 'clock'
+    current_time: time_display
+    on_enter: Clock.schedule_interval(self.updateTime, 0.01)
+
+    Button:
+        id: time_display
+        on_release: app.root.current = 'status'
+        font_size: 50
+
+<StatusScreen>:
+    name: 'status'
+    ip_address: ip_label
+    on_enter: Clock.schedule_interval(self.updateStatus, 1)
+
+    Button:
+        id: ip_label
+        text: "0.0.0.0"
+        font_size: 50
