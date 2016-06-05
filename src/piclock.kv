@@ -1,37 +1,89 @@
 #: import FadeTransition kivy.uix.screenmanager.FadeTransition
 #: import SlideTransition kivy.uix.screenmanager.SlideTransition
+#: import Boxlayout kivy.uix.boxlayout.BoxLayout
 #: import Clock kivy.clock.Clock
+#: import screens screens
+#: import navbars navbars
 
-ScreenManagement:
-    transition:  SlideTransition(direction="right")
-    MainScreen:
-    ClockScreen:
-    StatusScreen:
+
+ClockRoot:
+
+
+<ClockRoot@BoxLayout>:
+    orientation: "vertical"
+    screen_man: screen_man
+    NavBarTop:
+    ScreenManagement:
+        id: screen_man
+        transition:  SlideTransition(direction="right")
+        MainScreen:
+        ClockScreen:
+        StatusScreen:
+        WeatherScreen:
+    NavBarBot:
+
+<NavBarTop>:
+    orientation: 'horizontal'
+    size_hint_y: None
+    height: "40dp"
+    Button:
+        on_release: app.root.screen_man.current = 'Main'
+        text: 'PiClock'
+        font_size: 10
+    Button:
+        on_release: app.root.screen_man.current = 'Clock'
+        text: 'Clock'
+        font_size: 10
+    Button:
+        on_release: app.root.screen_man.current = 'Status'
+        text: 'Status'
+        font_size: 10
+
+<NavBarBot>:
+    orientation: 'horizontal'
+    size_hint_y: None
+    height: "40dp"
+    Button:
+        on_release: app.root.screen_man.current = 'Weather'
+        text: 'Weather'
+        font_size: 10
+    Button:
+        on_release: app.root.screen_man.current = 'Clock'
+        text: 'Clock'
+        font_size: 10
+    Button:
+        on_release: app.root.screen_man.current = 'Status'
+        text: 'Status'
+        font_size: 10
+
+
 
 <MainScreen>:
-    name: 'main'
-
-    Button:
-        on_release: app.root.current = 'clock'
-        text: 'PiClock'
+    name: 'Main'
+    Label:
+        text: "PiClock"
+        font_size: 50
+<WeatherScreen>:
+    name: "Weather"
+    Label:
+        text: "Weather"
         font_size: 50
 
 <ClockScreen>:
-    name: 'clock'
+    name: 'Clock'
     current_time: time_display
     on_enter: Clock.schedule_interval(self.updateTime, 0.01)
 
-    Button:
+    Label:
         id: time_display
-        on_release: app.root.current = 'status'
         font_size: 50
 
 <StatusScreen>:
-    name: 'status'
+    name: 'Status'
     ip_address: ip_label
     on_enter: Clock.schedule_interval(self.updateStatus, 1)
 
-    Button:
+    Label:
         id: ip_label
         text: "0.0.0.0"
         font_size: 50
