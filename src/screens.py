@@ -1,7 +1,9 @@
 from kivy.clock import Clock
 from kivy.properties import ObjectProperty
+from kivy.lang import Builder
 from kivy.uix.screenmanager import ScreenManager, Screen
 
+Builder.load_file('screens.kv')
 
 import time
 from subprocess import *
@@ -26,7 +28,7 @@ class ClockScreen(Screen):
     current_time = ObjectProperty()
 
     def updateTime(self, dt):
-        self.current_time.text = time.strftime("%I:%M:%S %p", time.localtime())
+        self.current_time.text = time.strftime("%I:%M:%S", time.localtime())
 
 class StatusScreen(Screen):
     ip_address = ObjectProperty()

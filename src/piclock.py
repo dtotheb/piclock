@@ -10,14 +10,15 @@ import navbars
 Config.set('graphics', 'width', '320')
 Config.set('graphics', 'height', '240')
 
-presentation = Builder.load_file("piclock.kv")
+
 
 class ClockRoot(BoxLayout):
     screen_man = ObjectProperty()
 
 class PiClockApp(App):
     def build(self):
-        return presentation
+        Builder.load_file("piclock.kv")
+
 
 if __name__ == '__main__':
     PiClockApp().run()

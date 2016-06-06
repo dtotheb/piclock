@@ -1,0 +1,30 @@
+<MainScreen>:
+    name: 'Main'
+    Label:
+        text: "PiClock"
+        font_size: 50
+
+<WeatherScreen>:
+    name: "Weather"
+    Label:
+        text: "Weather"
+        font_size: 50
+
+<ClockScreen>:
+    name: 'Clock'
+    current_time: time_display
+    on_enter: Clock.schedule_interval(self.updateTime, 0.01)
+
+    Label:
+        id: time_display
+        font_size: 75
+
+<StatusScreen>:
+    name: 'Status'
+    ip_address: ip_label
+    on_enter: Clock.schedule_interval(self.updateStatus, 1)
+
+    Label:
+        id: ip_label
+        text: "0.0.0.0"
+        font_size: 50
