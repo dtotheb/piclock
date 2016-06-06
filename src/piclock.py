@@ -12,7 +12,7 @@ Config.set('graphics', 'height', '240')
 
 
 
-class ClockRoot(BoxLayout):
+class PiClockRoot(BoxLayout):
     screen_man = ObjectProperty()
 
 class PiClockApp(App):
