@@ -3,24 +3,31 @@
     on_release: app.root.screen_man.current = self.text
     font_size: 20
 
+
 <NavBarTop>:
     orientation: 'horizontal'
     size_hint_y: None
-    height: "20dp"
+    height: "40dp"
     NavButton:
         text: 'Main'
+        background_color: [0.7,0,0,1]
     NavButton:
         text: 'Clock'
+        background_color: [0,0.7,0,1]
     NavButton:
         text: 'Status'
+        background_color: [0,0,0.7,1]
 
 <NavBarBot>:
     orientation: 'horizontal'
     size_hint_y: None
-    height: "20dp"
+    height: "40dp"
     NavButton:
         text: 'Weather'
+        background_color: [0.7,0,0,1]
     NavButton:
         text: 'Clock'
+        background_color: [0,0.7,0,1]
     NavButton:
         text: 'Status'
+        background_color: [0,0,0.7,1]

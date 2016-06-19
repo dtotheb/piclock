@@ -2,29 +2,66 @@
     name: 'Main'
     Label:
         text: "PiClock"
-        font_size: 50
+        font_size: 40
+        color: 0.7, 0, 0, 1
 
 <WeatherScreen>:
     name: "Weather"
     Label:
         text: "Weather"
-        font_size: 50
+        font_size: 40
+        color: 0.7, 0, 0, 1
 
 <ClockScreen>:
     name: 'Clock'
     current_time: time_display
-    on_enter: Clock.schedule_interval(self.updateTime, 0.01)
+    on_enter: self.setupClockScreen()
 
     Label:
         id: time_display
         font_size: 75
+        color: 0, 0.7, 0, 1
 
 <StatusScreen>:
     name: 'Status'
-    ip_address: ip_label
-    on_enter: Clock.schedule_interval(self.updateStatus, 1)
+    ip: ip_val
+    cputemp: cputemp_val
+    uptime: uptime_val
 
-    Label:
-        id: ip_label
-        text: "0.0.0.0"
-        font_size: 50
+    on_enter: self.setupStatusScreen()
+
+    GridLayout:
+        orientation: 'vertical'
+        rows: 3
+        cols: 2
+        StatusLabel:
+            markup: True
+            text: "[b]IP:[/b]"
+        StatusValue:
+            id: ip_val
+            text: ""
+        StatusLabel:
+            markup: True
+            text: "[b]CPU:[/b]"
+        StatusValue:
+            id: cputemp_val
+            text: ""
+        StatusLabel:
+            markup: True
+            text: "[b]uptime:[/b]"
+        StatusValue:
+            id: uptime_val
+            text: "1"
+
+<StatusLabel@Label>:
+    text_size: self.size
+    font_size: 30
+    halign: 'right'
+    size_hint_x: None
+    width: 125
+    padding_x: 5
+
+<StatusValue@Label>:
+    text_size: self.size
+    font_size: 30
+    halign: 'left'
