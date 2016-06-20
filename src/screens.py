@@ -30,7 +30,7 @@ def getCPUtemperature():
 
 def getUptime():
     res = run_cmd(uptime_cmd)
-    return(res.replace("up ",""))
+    return(res.replace("up","").replace("ute",""))
 
 
 
@@ -50,7 +50,7 @@ class ClockScreen(Screen):
         Clock.schedule_interval(self.updateTime, 0.01)
 
     def updateTime(self, dt):
-        self.current_time.text = time.strftime("%I:%M:%S", time.localtime())
+        self.current_time.text = time.strftime("[color=ff0000]%I[/color]:[color=00ff00]%M[/color]:[color=0000ff]%S[/color]", time.localtime())
 
 class StatusScreen(Screen):
     ip = ObjectProperty()

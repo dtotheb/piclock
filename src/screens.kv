@@ -20,7 +20,7 @@
     Label:
         id: time_display
         font_size: 75
-        color: 0, 0.7, 0, 1
+        markup: True
 
 <StatusScreen>:
     name: 'Status'
@@ -51,17 +51,18 @@
             text: "[b]uptime:[/b]"
         StatusValue:
             id: uptime_val
+            font_size: 20
             text: "1"
 
 <StatusLabel@Label>:
     text_size: self.size
-    font_size: 30
+    font_size: 28
     halign: 'right'
     size_hint_x: None
-    width: 125
+    width: 115
     padding_x: 5
 
 <StatusValue@Label>:
     text_size: self.size
-    font_size: 30
+    font_size: 28
     halign: 'left'
